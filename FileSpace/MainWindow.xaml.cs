@@ -43,6 +43,7 @@ namespace FileSpace
 
         private ClassScan _oScan;
         private bool _showDup;
+        private GridViewColumnHeader _orderColumnHeader;
 
         public MainWindow()
         {
@@ -75,6 +76,12 @@ namespace FileSpace
 
         private void BtnScan_click(object sender, RoutedEventArgs e)
         {
+            if (_showDup)
+            {
+                _showDup = false;
+                BtnScanDup.Content = "Search duplicate";
+            }
+
             _oScan = new ClassScan();
 
             _oScan.Scan(TextPath.Text, this);
@@ -125,10 +132,17 @@ namespace FileSpace
 
         private void BtnScanSel_click(object sender, RoutedEventArgs e)
         {
+
             if (ListFile.SelectedItem != null)
             {
                 if (((ClassFsItem)ListFile.SelectedItem).Type == "Dir.")
                 {
+                    if (_showDup)
+                    {
+                        _showDup = false;
+                        BtnScanDup.Content = "Search duplicate";
+                    }
+
                     TextPath.Text = ((ClassFsItem)ListFile.SelectedItem).Name;
 
                     _oScan = new ClassScan();
@@ -148,6 +162,7 @@ namespace FileSpace
             {
                 _showDup = false;
                 _oScan.Show(this);
+                reorder();
                 BtnScanDup.Content = "Search duplicate";
             }
             else
@@ -180,11 +195,16 @@ namespace FileSpace
         private void ListFileHeaderClick(object sender, RoutedEventArgs e)
         {
 
-            var header = e.OriginalSource as GridViewColumnHeader;
-            if (header != null && header.Column != null)
+            _orderColumnHeader = e.OriginalSource as GridViewColumnHeader;
+            reorder();
+        }
+
+        private void reorder()
+        {
+            if (_orderColumnHeader != null && _orderColumnHeader.Column != null)
             {
 
-                Binding b = header.Column.DisplayMemberBinding as Binding;
+                Binding b = _orderColumnHeader.Column.DisplayMemberBinding as Binding;
 
                 if (b != null)
                 {
@@ -207,6 +227,7 @@ namespace FileSpace
                 }
             }
         }
+
 
         private void ListFile_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
