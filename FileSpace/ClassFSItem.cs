@@ -33,21 +33,21 @@ namespace FileSpace
 
         public string Name { get; set; }
 
-        public abstract int nbDuplicate { get; }
+        public abstract int NbDuplicate { get; }
 
-        public string deleteText { get; protected set; }
+        public string DeleteText { get; protected set; }
 
         private ClassDuplicate _duplicateFile;
 
-        public ClassDuplicate duplicateFile {
+        public ClassDuplicate DuplicateFile {
             get {
                 if (Parent != null)
-                    return Parent.duplicateFile;
+                    return Parent.DuplicateFile;
                 return _duplicateFile;
             }
             protected set{
                 if (Parent != null)
-                    Parent.duplicateFile = value;
+                    Parent.DuplicateFile = value;
                 _duplicateFile = value;
             }
         }
@@ -93,7 +93,7 @@ namespace FileSpace
 
         public abstract void OpenInExplorer();
 
-        public abstract void deleteFile();
+        public abstract void DeleteFile();
 
         public override string ToString()
         {
@@ -103,7 +103,7 @@ namespace FileSpace
         public bool Equals(ClassFsItem other)
         {
             if (other == null) return false;
-            return (this.Name.Equals(other.Name));
+            return Name.Equals(other.Name);
         }
     }
     

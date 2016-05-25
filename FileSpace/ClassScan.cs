@@ -84,9 +84,9 @@ namespace FileSpace
             //affichage
             owindow.ClearList();
 
-            _root.duplicateFile.searchedMd5 = md5Sum;
+            _root.DuplicateFile.SearchedMd5 = md5Sum;
 
-            foreach (ClassFile oFile in _root.duplicateFile)
+            foreach (ClassFile oFile in _root.DuplicateFile)
                 owindow.AddLine(oFile);
         }
 
@@ -97,7 +97,7 @@ namespace FileSpace
             {
                 var lFiles = Directory.EnumerateFiles(root.Name);
                 foreach (string f in lFiles) { 
-                    ClassFile file = root.AddFile(f, (new FileInfo(f)).Length);   
+                    root.AddFile(f, new FileInfo(f).Length);   
                 }
             }
             catch (Exception e)
@@ -131,9 +131,9 @@ namespace FileSpace
             }
         }
 
-        public void deleteFile(ClassFsItem itemToDelete, MainWindow owindow)
+        public void DeleteFile(ClassFsItem itemToDelete, MainWindow owindow)
         {
-            itemToDelete.deleteFile();
+            itemToDelete.DeleteFile();
             owindow.ListFile.Items.Remove(itemToDelete);
             
             owindow.ListFile.Items.Refresh();

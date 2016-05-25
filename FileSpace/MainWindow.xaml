@@ -98,7 +98,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Nb. duplicate" DisplayMemberBinding="{Binding Path=(fileSpace:ClassFsItem.nbDuplicate)}" />
+                    <GridViewColumn Header="Nb. duplicate" DisplayMemberBinding="{Binding Path=(fileSpace:ClassFsItem.NbDuplicate)}" />
                 </GridView>
             </ListView.View>
         </ListView>

@@ -35,14 +35,14 @@ namespace FileSpace
         //List of duplicate file
         private Dictionary<string, List<ClassFile>> _duplicateFile;
 
-        public string searchedMd5 { get; set; }
+        public string SearchedMd5 { get; set; }
 
         public ClassDuplicate()
         {
             _duplicateFile = new Dictionary<string, List<ClassFile>>();
         }
 
-        public void add(ClassFile file)
+        public void Add(ClassFile file)
         {
             string fileMd5 = file.Md5();
             if (_duplicateFile.ContainsKey(fileMd5))
@@ -56,33 +56,33 @@ namespace FileSpace
                 _duplicateFile[fileMd5].Add(file);
             }
 
-            file.lstDuplicate = _duplicateFile[fileMd5];
+            file.LstDuplicate = _duplicateFile[fileMd5];
         }
 
-        public void deleteFile(ClassFsItem itemToDelete)
+        public void DeleteFile(ClassFsItem itemToDelete)
         {
             if (itemToDelete.Type == "File") { 
-                _duplicateFile[((ClassFile)itemToDelete).Md5()].Remove(((ClassFile)itemToDelete));
+                _duplicateFile[((ClassFile)itemToDelete).Md5()].Remove((ClassFile)itemToDelete);
                 File.Delete(itemToDelete.Name);
             }
             else
             {
-                deleteRepDuplicate(((ClassDirectory)itemToDelete));
+                DeleteRepDuplicate((ClassDirectory)itemToDelete);
                 Directory.Delete(itemToDelete.Name, false);
             }
             
         }
 
-        private void deleteRepDuplicate(ClassDirectory rep)
+        private void DeleteRepDuplicate(ClassDirectory rep)
         {
             foreach (ClassFsItem item in rep)
             {
                 if (item.Type == "File") { 
-                    _duplicateFile[((ClassFile)item).Md5()].Remove(((ClassFile)item));
+                    _duplicateFile[((ClassFile)item).Md5()].Remove((ClassFile)item);
                     File.Delete(item.Name);
                 }
                 else { 
-                    deleteRepDuplicate(((ClassDirectory)item));
+                    DeleteRepDuplicate((ClassDirectory)item);
                     Directory.Delete(item.Name, false);
                 }
             }
@@ -92,7 +92,7 @@ namespace FileSpace
         public IEnumerator<ClassFile> GetEnumerator()
         {
             //if (!_duplicateFile.ContainsKey(searchedMd5))  //TODO: throw exception
-            return ((IEnumerable<ClassFile>)_duplicateFile[searchedMd5]).GetEnumerator();
+            return ((IEnumerable<ClassFile>)_duplicateFile[SearchedMd5]).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

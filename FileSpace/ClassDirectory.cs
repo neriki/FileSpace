@@ -36,7 +36,7 @@ namespace FileSpace
 
         private List<ClassFsItem> _content;
 
-        public override int nbDuplicate
+        public override int NbDuplicate
         {
             get
             {
@@ -47,7 +47,7 @@ namespace FileSpace
         public ClassDirectory(string name) :this(name,null)
         {
             
-            duplicateFile = new ClassDuplicate();
+            DuplicateFile = new ClassDuplicate();
         }
 
 
@@ -58,7 +58,7 @@ namespace FileSpace
             Name = name;
             Parent = parent;
             _content=new List<ClassFsItem>();
-            deleteText = "Do you want to delete the directory: \r\n " +
+            DeleteText = "Do you want to delete the directory: \r\n " +
                             Name + "\r\n and all files and directories in this directory.";
         }
 
@@ -83,7 +83,7 @@ namespace FileSpace
         {
             ClassFile newItem =new ClassFile(size,name, this);
             _content.Add(newItem);
-            duplicateFile.add(newItem);
+            DuplicateFile.Add(newItem);
             return newItem;
         }
 
@@ -91,7 +91,7 @@ namespace FileSpace
         {
             ClassFile newItem = new ClassFile(size, name, this, md5);
             _content.Add(newItem);
-            duplicateFile.add(newItem);
+            DuplicateFile.Add(newItem);
             return newItem;
         }
 
@@ -111,13 +111,13 @@ namespace FileSpace
             Process.Start("Explorer.exe", Name);
         }
 
-        public override void deleteFile()
+        public override void DeleteFile()
         {
             Parent.Remove(this);
-            duplicateFile.deleteFile(this);
+            DuplicateFile.DeleteFile(this);
         }
 
-        public bool empty()
+        public bool Empty()
         {
             return _content.Count == 0;
         }

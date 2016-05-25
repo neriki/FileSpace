@@ -40,8 +40,8 @@ namespace FileSpaceUnitTest
             ClassFile file1 = root.AddFile("c:\\test\\file1", 80, "123");
             ClassFile file2 = root.AddFile("c:\\test\\file2", 60, "456");
 
-            Assert.AreEqual(0, file1.nbDuplicate);
-            Assert.AreEqual(0, file2.nbDuplicate);
+            Assert.AreEqual(0, file1.NbDuplicate);
+            Assert.AreEqual(0, file2.NbDuplicate);
 
         }
 
@@ -56,8 +56,8 @@ namespace FileSpaceUnitTest
             ClassFile file1 = test2.AddFile("c:\\test\\test2\\file1", 80, "123");
             ClassFile file2 = test2.AddFile("c:\\test\\test2\\file2", 60, "123");
 
-            Assert.AreEqual(1, file1.nbDuplicate);
-            Assert.AreEqual(1, file2.nbDuplicate);
+            Assert.AreEqual(1, file1.NbDuplicate);
+            Assert.AreEqual(1, file2.NbDuplicate);
 
         }
         
@@ -73,16 +73,16 @@ namespace FileSpaceUnitTest
 
             ClassFile file1 = test3.AddFile("c:\\test\\test2\\test3\\file1", 80, "123");
 
-            ClassFile file2 = test3.AddFile("c:\\test\\test2\\test3\\file2", 60, "123");
+            test3.AddFile("c:\\test\\test2\\test3\\file2", 60, "123");
             ClassFile file3 = test3.AddFile("c:\\test\\test2\\test3\\file3", 10, "789");
 
-            ClassFile file4 = test1.AddFile("c:\\test\\test1\\file4", 30, "456");
+            test1.AddFile("c:\\test\\test1\\file4", 30, "456");
             ClassFile file5 = test2.AddFile("c:\\test\\test1\\file5", 50, "123");
 
 
-            Assert.AreEqual(2, file1.nbDuplicate);
-            Assert.AreEqual(0, file3.nbDuplicate);
-            Assert.AreEqual(2, file5.nbDuplicate);
+            Assert.AreEqual(2, file1.NbDuplicate);
+            Assert.AreEqual(0, file3.NbDuplicate);
+            Assert.AreEqual(2, file5.NbDuplicate);
 
         }
     }

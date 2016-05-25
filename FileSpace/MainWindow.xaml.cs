@@ -25,13 +25,11 @@
  */
 
 using System.ComponentModel;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using System.Collections.Generic;
 
 namespace FileSpace
 {
@@ -103,10 +101,10 @@ namespace FileSpace
             {
                 if (ListFile.SelectedItems.Count == 1)
                 {
-                    if (MessageBox.Show(((ClassFsItem)ListFile.SelectedItem).deleteText,
+                    if (MessageBox.Show(((ClassFsItem)ListFile.SelectedItem).DeleteText,
                                 "Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
-                        _oScan.deleteFile(((ClassFsItem)ListFile.SelectedItem), this);
+                        _oScan.DeleteFile((ClassFsItem)ListFile.SelectedItem, this);
                     }
                 }
                 else
@@ -120,7 +118,7 @@ namespace FileSpace
                     {
                         foreach (ClassFsItem itm in selected)
                         {
-                            _oScan.deleteFile(itm, this);
+                            _oScan.DeleteFile(itm, this);
                         }
                     }
                     
@@ -162,7 +160,7 @@ namespace FileSpace
             {
                 _showDup = false;
                 _oScan.Show(this);
-                reorder();
+                Reorder();
                 BtnScanDup.Content = "Search duplicate";
             }
             else
@@ -196,10 +194,10 @@ namespace FileSpace
         {
 
             _orderColumnHeader = e.OriginalSource as GridViewColumnHeader;
-            reorder();
+            Reorder();
         }
 
-        private void reorder()
+        private void Reorder()
         {
             if (_orderColumnHeader != null && _orderColumnHeader.Column != null)
             {

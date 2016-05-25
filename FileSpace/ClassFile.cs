@@ -35,13 +35,13 @@ namespace FileSpace
     {
         private string _md5;
 
-        public List<ClassFile> lstDuplicate { private get; set; }
+        public List<ClassFile> LstDuplicate { private get; set; }
 
-        public override int nbDuplicate
+        public override int NbDuplicate
         {
             get
             {
-                return lstDuplicate.Count-1;
+                return LstDuplicate.Count-1;
             }
         }
 
@@ -51,7 +51,7 @@ namespace FileSpace
             Name = name;
             Parent = parent;
             Size = size;
-            deleteText = "Do you want to delete the file: \r\n " + Name;
+            DeleteText = "Do you want to delete the file: \r\n " + Name;
         }
 
         public ClassFile(double size, string name, ClassDirectory parent, string md5) : this(size,name,parent)
@@ -82,10 +82,10 @@ namespace FileSpace
             return _md5;
         }
 
-        public override void deleteFile()
+        public override void DeleteFile()
         {
             Parent.Remove(this);
-            duplicateFile.deleteFile(this);
+            DuplicateFile.DeleteFile(this);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace FileSpaceUnitTest
         {
             ClassDirectory root = new ClassDirectory("c:\\test");
 
-            ClassDirectory test2 = root.AddDirectory("c:\\test\\test2");
+            root.AddDirectory("c:\\test\\test2");
 
 
 
@@ -60,8 +60,8 @@ namespace FileSpaceUnitTest
         {
             ClassDirectory root = new ClassDirectory("c:\\test");
 
-            ClassDirectory test2 = root.AddDirectory("c:\\test\\test2");
-            ClassDirectory test3 = root.AddDirectory("c:\\test\\test3");
+            root.AddDirectory("c:\\test\\test2");
+            root.AddDirectory("c:\\test\\test3");
 
             int cpt = 0;
             foreach (var item in root)
@@ -80,10 +80,10 @@ namespace FileSpaceUnitTest
         {
             ClassDirectory root = new ClassDirectory("c:\\test");
 
-            ClassDirectory test2 = root.AddDirectory("c:\\test\\test2");
+            root.AddDirectory("c:\\test\\test2");
             ClassDirectory test3 = root.AddDirectory("c:\\test\\test3");
 
-            ClassDirectory test4 = test3.AddDirectory("c:\\test\\test3\\test4");
+            test3.AddDirectory("c:\\test\\test3\\test4");
 
             int cpt = 0;
             foreach (var item in root)
@@ -92,8 +92,8 @@ namespace FileSpaceUnitTest
                 Assert.AreEqual(item.Size, 0);
                 foreach (var itm in (ClassDirectory) item)
                 {
-                    Assert.AreEqual(item.Type, "Dir.");
-                    Assert.AreEqual(item.Size, 0);
+                    Assert.AreEqual(itm.Type, "Dir.");
+                    Assert.AreEqual(itm.Size, 0);
                     cpt++;
                 }
                 cpt++;
@@ -110,11 +110,11 @@ namespace FileSpaceUnitTest
             ClassDirectory test2 = root.AddDirectory("c:\\test\\test2");
             ClassDirectory test3 = root.AddDirectory("c:\\test\\test3");
 
-            ClassDirectory test4 = test3.AddDirectory("c:\\test\\test3\\test4");
+            test3.AddDirectory("c:\\test\\test3\\test4");
 
-            ClassDirectory test5 = test2.AddDirectory("c:\\test\\test2\\test5");
+            test2.AddDirectory("c:\\test\\test2\\test5");
 
-            ClassDirectory test6 = test2.AddDirectory("c:\\test\\test2\\test6");
+            test2.AddDirectory("c:\\test\\test2\\test6");
 
             int cpt = 0;
             foreach (var item in root)
@@ -123,8 +123,8 @@ namespace FileSpaceUnitTest
                 Assert.AreEqual(item.Size, 0);
                 foreach (var itm in (ClassDirectory)item)
                 {
-                    Assert.AreEqual(item.Type, "Dir.");
-                    Assert.AreEqual(item.Size, 0);
+                    Assert.AreEqual(itm.Type, "Dir.");
+                    Assert.AreEqual(itm.Size, 0);
                     cpt++;
                 }
                 cpt++;
