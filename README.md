@@ -1,9 +1,9 @@
 # FileSpace
-##Presentation
+## Presentation
 
 Disk space analyzer and duplicate finder.
 
-##HowTo
+## HowTo
 
 Launch the Exe, type in the "Path:" field the path to the directory you wish to analyze, or choose a path with the "..." button. Then click the "Scan" Button.
 
